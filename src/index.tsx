@@ -25,9 +25,16 @@ import { configureAppStore } from 'store/configureStore';
 import { ThemeProvider } from 'styles/theme/ThemeProvider';
 
 import reportWebVitals from 'reportWebVitals';
+import { OuComboBox } from './app/components/OuComboBox';
+import { OuComboBoxItem } from './app/components/OuComboBoxItem';
+import { OuSelect } from './app/components/OuSelect';
+import { OuOption } from 'app/components/OuOption';
+import { ValueState } from '@ui5/webcomponents-react/dist/ValueState';
 
 // Initialize languages
 import './locales/i18n';
+import { OuMultiComboBox } from 'app/components/OuMultiComboBox';
+import { OuMultiComboBoxItem } from 'app/components/OuMultiComboBoxItem';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in
 // the index.html file and this observer)
@@ -47,6 +54,35 @@ ReactDOM.render(
       <HelmetProvider>
         <React.StrictMode>
           <App />
+          <OuComboBox
+            loading={false}
+            placeholder="enter a value"
+            filter="Contains"
+            valueState={ValueState.Warning}
+          >
+            <OuComboBoxItem text="combo"></OuComboBoxItem>
+            <OuComboBoxItem text="comboBox"></OuComboBoxItem>
+            <OuComboBoxItem text="Item1"></OuComboBoxItem>
+            <OuComboBoxItem text="Item2"></OuComboBoxItem>
+          </OuComboBox>
+          <br />
+          <br />
+          <OuSelect
+            disabled={false}
+            placeholder="enter a value"
+            valueState={ValueState.Information}
+          >
+            <OuOption>option1</OuOption>
+          </OuSelect>
+          <OuMultiComboBox
+            placeholder="enter a value"
+            filter="Contains"
+            valueState={ValueState.None}
+          >
+            <OuMultiComboBoxItem text="Item1"></OuMultiComboBoxItem>
+            <OuMultiComboBoxItem text="Item22"></OuMultiComboBoxItem>
+            <OuMultiComboBoxItem text="topic1"></OuMultiComboBoxItem>
+          </OuMultiComboBox>
         </React.StrictMode>
       </HelmetProvider>
     </ThemeProvider>

@@ -10,6 +10,6 @@ import { ThemeState } from 'styles/theme/slice/types';
 */
 export interface RootState {
   theme?: ThemeState;
-  githubRepoForm?: GithubRepoFormState;
+  githubRepoForm?: GithubRepoFormState; 
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }
