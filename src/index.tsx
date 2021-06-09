@@ -29,12 +29,25 @@ import { OuComboBox } from './app/components/OuComboBox';
 import { OuComboBoxItem } from './app/components/OuComboBoxItem';
 import { OuSelect } from './app/components/OuSelect';
 import { OuOption } from 'app/components/OuOption';
+import { ToolbarStyle } from '@ui5/webcomponents-react/dist/ToolbarStyle';
+import { ToolbarDesign } from '@ui5/webcomponents-react/dist/ToolbarDesign';
 import { ValueState } from '@ui5/webcomponents-react/dist/ValueState';
+import { PlacementType } from '@ui5/webcomponents-react/dist/PlacementType';
+import { TitleLevel } from '@ui5/webcomponents-react/dist/TitleLevel';
 
 // Initialize languages
 import './locales/i18n';
 import { OuMultiComboBox } from 'app/components/OuMultiComboBox';
 import { OuMultiComboBoxItem } from 'app/components/OuMultiComboBoxItem';
+import { OuToolbar } from 'app/components/OuToolbar';
+import { OuVariantManagement } from 'app/components/OuVariantManagement';
+import { OuForm } from 'app/components/OuForm';
+import { OuFormGroup } from 'app/components/OuFormGroup';
+import { OuFormItem } from 'app/components/OuFormItem';
+import { OuDialog } from 'app/components/OuDialog';
+import { OuFlexbox } from 'app/components/OuFlexbox';
+import { OuDynamicPage } from 'app/components/OuDynamicPage';
+import { Button, FormItem, ToolbarSpacer } from '@ui5/webcomponents-react';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in
 // the index.html file and this observer)
@@ -54,35 +67,76 @@ ReactDOM.render(
       <HelmetProvider>
         <React.StrictMode>
           <App />
-          <OuComboBox
-            loading={false}
-            placeholder="enter a value"
-            filter="Contains"
-            valueState={ValueState.Warning}
+          <OuToolbar
+            toolbarStyle={ToolbarStyle.Clear}
+            design={ToolbarDesign.Info}
           >
-            <OuComboBoxItem text="combo"></OuComboBoxItem>
-            <OuComboBoxItem text="comboBox"></OuComboBoxItem>
-            <OuComboBoxItem text="Item1"></OuComboBoxItem>
-            <OuComboBoxItem text="Item2"></OuComboBoxItem>
-          </OuComboBox>
-          <br />
-          <br />
-          <OuSelect
-            disabled={false}
-            placeholder="enter a value"
-            valueState={ValueState.Information}
-          >
-            <OuOption>option1</OuOption>
-          </OuSelect>
-          <OuMultiComboBox
-            placeholder="enter a value"
-            filter="Contains"
-            valueState={ValueState.None}
-          >
-            <OuMultiComboBoxItem text="Item1"></OuMultiComboBoxItem>
-            <OuMultiComboBoxItem text="Item22"></OuMultiComboBoxItem>
-            <OuMultiComboBoxItem text="topic1"></OuMultiComboBoxItem>
-          </OuMultiComboBox>
+            <OuVariantManagement
+              variantItems={[
+                { key: '1', label: 'Standard123' },
+                { key: '2', label: 'Advanced' },
+              ]}
+              placement={PlacementType.Top}
+              closeOnItemSelect={false}
+              level={TitleLevel.H6}
+            ></OuVariantManagement>
+            <ToolbarSpacer />
+            <Button>center</Button>
+            <ToolbarSpacer />
+          </OuToolbar>
+          <OuForm title="Test Form" labelSpanM={12}>
+            <OuFormGroup title={'WL1001'}>
+              <OuFormItem label={'WellNumber'}>
+                <OuComboBox
+                  loading={false}
+                  placeholder="enter a value"
+                  filter="Contains"
+                  valueState={ValueState.Warning}
+                >
+                  <OuComboBoxItem text="combo"></OuComboBoxItem>
+                  <OuComboBoxItem text="comboBox"></OuComboBoxItem>
+                  <OuComboBoxItem text="Item1"></OuComboBoxItem>
+                  <OuComboBoxItem text="Item2"></OuComboBoxItem>
+                </OuComboBox>
+              </OuFormItem>
+              <FormItem>
+                <OuSelect
+                  disabled={false}
+                  placeholder="enter a value"
+                  valueState={ValueState.Information}
+                >
+                  <OuOption>option1</OuOption>
+                </OuSelect>
+              </FormItem>
+              <FormItem>
+                <OuMultiComboBox
+                  placeholder="enter a value"
+                  filter="Contains"
+                  valueState={ValueState.None}
+                >
+                  <OuMultiComboBoxItem text="Item1"></OuMultiComboBoxItem>
+                  <OuMultiComboBoxItem text="Item22"></OuMultiComboBoxItem>
+                  <OuMultiComboBoxItem text="topic1"></OuMultiComboBoxItem>
+                </OuMultiComboBox>
+              </FormItem>
+            </OuFormGroup>
+          </OuForm>
+          <Button onClick={function noRefCheck() {}}>Open Dialog</Button>
+          <OuDialog
+            ref={{
+              current: '[Circular]',
+            }}
+            className=""
+            footer={<Button onClick={function noRefCheck() {}}>Close</Button>}
+            headerText="Dialog Header"
+            onAfterClose={function noRefCheck() {}}
+            onAfterOpen={function noRefCheck() {}}
+            onBeforeClose={function noRefCheck() {}}
+            onBeforeOpen={function noRefCheck() {}}
+            slot=""
+            style={{}}
+            tooltip=""
+          ></OuDialog>
         </React.StrictMode>
       </HelmetProvider>
     </ThemeProvider>
